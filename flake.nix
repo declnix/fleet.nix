@@ -46,6 +46,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zef.url = "github:declnix/zef";
+    zsh-nix.url = "github:declnix/zsh.nix";
   };
 }

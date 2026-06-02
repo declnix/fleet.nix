@@ -235,7 +235,7 @@
     "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": [
-          "zef",
+          "zsh-nix",
           "nixpkgs"
         ]
       },
@@ -250,22 +250,6 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "fzf-tab": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1778690425,
-        "narHash": "sha256-WlmWLKHrLeptc5rqlHbKvthD73it9ij7IDT9QxN4jCc=",
-        "owner": "Aloxaf",
-        "repo": "fzf-tab",
-        "rev": "e394092c17277c84cb3d234917c4ac1073102ba6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Aloxaf",
-        "repo": "fzf-tab",
         "type": "github"
       }
     },
@@ -319,7 +303,7 @@
         "flake-compat": "flake-compat_5",
         "gitignore": "gitignore_3",
         "nixpkgs": [
-          "zef",
+          "zsh-nix",
           "nixpkgs"
         ]
       },
@@ -383,7 +367,7 @@
     "gitignore_3": {
       "inputs": {
         "nixpkgs": [
-          "zef",
+          "zsh-nix",
           "git-hooks-nix",
           "nixpkgs"
         ]
@@ -816,7 +800,7 @@
         "pi": "pi",
         "tmf": "tmf",
         "treefmt-nix": "treefmt-nix_3",
-        "zef": "zef"
+        "zsh-nix": "zsh-nix"
       }
     },
     "systems": {
@@ -938,7 +922,7 @@
     "treefmt-nix_4": {
       "inputs": {
         "nixpkgs": [
-          "zef",
+          "zsh-nix",
           "nixpkgs"
         ]
       },
@@ -956,50 +940,27 @@
         "type": "github"
       }
     },
-    "wrappers": {
-      "inputs": {
-        "nixpkgs": [
-          "zef",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779447529,
-        "narHash": "sha256-iLPDE+Y94InNZvt92On6gWWvFOavfOzkKyEwraHUzGc=",
-        "owner": "Lassulus",
-        "repo": "wrappers",
-        "rev": "c27eb498c21c45ec33fce35a8572ddf96f072d48",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Lassulus",
-        "repo": "wrappers",
-        "type": "github"
-      }
-    },
-    "zef": {
+    "zsh-nix": {
       "inputs": {
         "dag": "dag_2",
         "flake-file": "flake-file_3",
         "flake-parts": "flake-parts_4",
-        "fzf-tab": "fzf-tab",
         "git-hooks-nix": "git-hooks-nix_3",
         "import-tree": "import-tree_3",
         "nixpkgs": "nixpkgs_7",
-        "treefmt-nix": "treefmt-nix_4",
-        "wrappers": "wrappers"
+        "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1780142775,
-        "narHash": "sha256-gnQZQan6MMUo1Eh3ajOyqDZzKDBM1ktbLoiC2Poy+LY=",
+        "lastModified": 1780524235,
+        "narHash": "sha256-fSeY71PuFQDqKLhTF75Ty4bTnQTWqnQie7dj8SkGtYU=",
         "owner": "declnix",
-        "repo": "zef",
-        "rev": "488103e4e54c38b344165a515911f637f8a461f4",
+        "repo": "zsh.nix",
+        "rev": "1cd926d92a3bae8ff0af607b9c96a3284f74e85f",
         "type": "github"
       },
       "original": {
         "owner": "declnix",
-        "repo": "zef",
+        "repo": "zsh.nix",
         "type": "github"
       }
     }
