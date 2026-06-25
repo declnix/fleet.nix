@@ -23,6 +23,10 @@
           format.enable = true;
           lsp.enable = true;
         };
+        languages.markdown = {
+          enable = true;
+          extensions.render-markdown-nvim.enable = true;
+        };
       } // {
         # fzf-lua
         fzf-lua.enable = true;
