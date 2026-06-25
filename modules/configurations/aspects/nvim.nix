@@ -10,7 +10,19 @@
         mini.icons.enable = true;
       } // {
         # completion
-        autocomplete.blink-cmp.enable = true;
+        autocomplete.blink-cmp = {
+          enable = true;
+          setupOpts = {
+            keymap = {
+              "<Down>" = [ "select_next" "fallback" ];
+              "<Up>" = [ "select_prev" "fallback" ];
+            };
+            cmdline.keymap = {
+              "<Down>" = [ "select_next" "show" "fallback" ];
+              "<Up>" = [ "select_prev" "fallback" ];
+            };
+          };
+        };
       } // {
         # lsp
         lsp = {
