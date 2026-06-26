@@ -5,6 +5,7 @@
 {
   den.aspects.wsl = {
     wsl = {
+      defaultUser = "declnix";
       interop.register = true;
     };
 
