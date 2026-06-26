@@ -2,13 +2,21 @@
 {
   den.aspects.zsh = {
     zsh = {
-      vi-mode.enable = true;
-      autosuggestions.enable = true;
-      syntax-highlighting.enable = true;
-      fzf-tab.enable = true;
-      fzf-history-search.enable = true;
-      omz.git.enable = true;
+      shell = {
+        editing = {
+          viMode.enable = true;
+          autosuggestions.enable = true;
+        };
 
+        highlighting.enable = true;
+
+        completion = {
+          fzfTab.enable = true;
+          fzfHistory.enable = true;
+        };
+      };
+
+      integrations.git.enable = true;
 
       initExtra = ''
         if [[ -n $SSH_CLIENT ]]; then
@@ -48,7 +56,7 @@
   den.default.nixos.hjem.extraModules = lib.mkAfter [
     ({ inputs, lib, config, pkgs, ... }:
       let
-        zsh-nix = inputs.zsh-nix or (throw "inputs.nix-zsh is required in flake inputs.");
+        zsh-nix = inputs.zsh-nix or (throw "inputs.zsh-nix is required in flake inputs.");
         zshConfig = zsh-nix.lib.zshConfiguration {
           inherit pkgs;
           modules = [ config.zsh-nix ];

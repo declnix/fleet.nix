@@ -2,11 +2,9 @@
 {
   den.aspects.tmux = {
     tmux = {
-      plugins = {
-        sensible.enable = true;
-        resurrect.enable = true;
-        continuum.enable = true;
-      };
+      sensible.enable = true;
+      resurrect.enable = true;
+      continuum.enable = true;
       history = 50000;
       statusBar.enable = true;
       statusBar.position = "bottom";
