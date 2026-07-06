@@ -2,21 +2,13 @@
 {
   den.aspects.zsh = {
     zsh = {
-      shell = {
-        editing = {
-          viMode.enable = true;
-          autosuggestions.enable = true;
-        };
+      zsh-vi-mode.enable = true;
+      zsh-autosuggestions.enable = true;
+      zsh-patina.enable = true;
+      fzf-tab.enable = true;
+      fzf-history-search.enable = true;
 
-        highlighting.patina.enable = true;
-
-        completion = {
-          fzfTab.enable = true;
-          fzfHistory.enable = true;
-        };
-      };
-
-      integrations.git.enable = true;
+      omz.git.enable = true;
 
       initConfig = ''
         if [[ -n $SSH_CLIENT ]]; then

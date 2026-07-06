@@ -1098,11 +1098,11 @@
         "zsh-patina": "zsh-patina"
       },
       "locked": {
-        "lastModified": 1783018331,
-        "narHash": "sha256-oE9IldRcls8g2gd4Hb2IxIIbPPE1lFwywxbeCmFN9Lw=",
+        "lastModified": 1783359439,
+        "narHash": "sha256-yKCZwWszSS+L3QAnYx1slsCSKcBuscmw+6QUYpePD7Q=",
         "owner": "declnix",
         "repo": "zsh.nix",
-        "rev": "a8d2c3260dba5c4759bc40826bd3a69b6abbf496",
+        "rev": "3bb3ad8dc100923a9b1b6ad77431296bffa16a25",
         "type": "github"
       },
       "original": {
