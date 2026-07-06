@@ -7,8 +7,13 @@
           # ui
           theme.enable = true;
           tabline.nvimBufferline.enable = true;
+          statusline.lualine.enable = true;
           visuals.nvim-web-devicons.enable = true;
           mini.icons.enable = true;
+
+          luaConfigPost = ''
+            vim.o.mouse = "a"
+          '';
         }
         {
           # completion
@@ -58,15 +63,37 @@
         }
         {
           # fzf-lua
-          fzf-lua.enable = true;
+          fzf-lua = {
+            enable = true;
+            setupOpts = {
+              keymap = {
+                fzf = {
+                  "ctrl-y" = "transform-query(pbpaste)";
+                  "alt-v" = "transform-query(pbpaste)";
+                };
+              };
+            };
+          };
           maps.normal = {
+            "<C-p>" = {
+              action = "<cmd>FzfLua files<CR>";
+              desc = "Find files";
+            };
             "<leader>ff" = {
               action = "<cmd>FzfLua files<CR>";
               desc = "Find files";
             };
+            "<C-S-f>" = {
+              action = "<cmd>FzfLua live_grep<CR>";
+              desc = "Search in files";
+            };
             "<leader>fg" = {
               action = "<cmd>FzfLua live_grep<CR>";
               desc = "Search in files";
+            };
+            "<C-S-p>" = {
+              action = "<cmd>FzfLua commands<CR>";
+              desc = "Command palette";
             };
             "<leader>fk" = {
               action = "<cmd>FzfLua keymaps<CR>";
@@ -79,6 +106,55 @@
             "<C-.>" = {
               action = "<cmd>FzfLua lsp_code_actions<CR>";
               desc = "Code actions";
+            };
+          };
+        }
+        {
+          # VS Code-style editor keymaps
+          maps = {
+            normal = {
+              "<C-Tab>" = {
+                action = "<cmd>BufferLineCycleNext<CR>";
+                desc = "Next buffer";
+              };
+              "<C-S-Tab>" = {
+                action = "<cmd>BufferLineCyclePrev<CR>";
+                desc = "Previous buffer";
+              };
+              "<C-w>" = {
+                action = "<cmd>bdelete<CR>";
+                desc = "Close buffer";
+              };
+              "<F2>" = {
+                action = "<cmd>lua vim.lsp.buf.rename()<CR>";
+                desc = "Rename symbol";
+              };
+              "<F12>" = {
+                action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+                desc = "Go to definition";
+              };
+              "<S-F12>" = {
+                action = "<cmd>lua vim.lsp.buf.references()<CR>";
+                desc = "Find references";
+              };
+              "<M-Up>" = {
+                action = "<cmd>move .-2<CR>==";
+                desc = "Move line up";
+              };
+              "<M-Down>" = {
+                action = "<cmd>move .+1<CR>==";
+                desc = "Move line down";
+              };
+            };
+            visual = {
+              "<M-Up>" = {
+                action = ":move '<-2<CR>gv=gv";
+                desc = "Move selection up";
+              };
+              "<M-Down>" = {
+                action = ":move '>+1<CR>gv=gv";
+                desc = "Move selection down";
+              };
             };
           };
         }
@@ -107,23 +183,33 @@
 
           luaConfigPost = ''
             require('fyler').setup({
-              configs = {
-                window = {
-                  kind = "floating",
-                  relative = "editor",
-                  border = "rounded",
-                  width = 2000,
-                  height = 1000,
-                  row = 0,
-                  col = 0,
+              views = {
+                finder = {
+                  win = {
+                    kind = "split_left_most",
+                    kinds = {
+                      split_left_most = {
+                        width = 36,
+                        options = {
+                          winfixwidth = true,
+                        },
+                      },
+                    },
+                  },
                 },
               },
             })
           '';
 
-          maps.normal."<leader>e" = {
-            action = "<cmd>Fyler<CR>";
-            desc = "Toggle file explorer";
+          maps.normal = {
+            "<C-b>" = {
+              action = "<cmd>lua require('fyler').toggle({ kind = 'split_left_most' })<CR>";
+              desc = "Toggle file explorer";
+            };
+            "<leader>e" = {
+              action = "<cmd>lua require('fyler').toggle({ kind = 'split_left_most' })<CR>";
+              desc = "Toggle file explorer";
+            };
           };
         }
       ];
