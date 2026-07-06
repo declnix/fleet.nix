@@ -74,89 +74,121 @@
               };
             };
           };
-          maps.normal = {
-            "<C-p>" = {
+          keymaps = [
+            {
+              key = "<C-p>";
+              mode = "n";
               action = "<cmd>FzfLua files<CR>";
               desc = "Find files";
-            };
-            "<leader>ff" = {
+            }
+            {
+              key = "<leader>ff";
+              mode = "n";
               action = "<cmd>FzfLua files<CR>";
               desc = "Find files";
-            };
-            "<C-S-f>" = {
+            }
+            {
+              key = "<C-S-f>";
+              mode = "n";
               action = "<cmd>FzfLua live_grep<CR>";
               desc = "Search in files";
-            };
-            "<leader>fg" = {
+            }
+            {
+              key = "<leader>fg";
+              mode = "n";
               action = "<cmd>FzfLua live_grep<CR>";
               desc = "Search in files";
-            };
-            "<C-S-p>" = {
+            }
+            {
+              key = "<C-S-p>";
+              mode = "n";
               action = "<cmd>FzfLua commands<CR>";
               desc = "Command palette";
-            };
-            "<leader>fk" = {
+            }
+            {
+              key = "<leader>fk";
+              mode = "n";
               action = "<cmd>FzfLua keymaps<CR>";
               desc = "Find keymaps";
-            };
-            "<leader>fb" = {
+            }
+            {
+              key = "<leader>fb";
+              mode = "n";
               action = "<cmd>FzfLua buffers<CR>";
               desc = "Find buffers";
-            };
-            "<C-.>" = {
+            }
+            {
+              key = "<C-.>";
+              mode = "n";
               action = "<cmd>FzfLua lsp_code_actions<CR>";
               desc = "Code actions";
-            };
-          };
+            }
+          ];
         }
         {
           # VS Code-style editor keymaps
-          maps = {
-            normal = {
-              "<C-Tab>" = {
-                action = "<cmd>BufferLineCycleNext<CR>";
-                desc = "Next buffer";
-              };
-              "<C-S-Tab>" = {
-                action = "<cmd>BufferLineCyclePrev<CR>";
-                desc = "Previous buffer";
-              };
-              "<C-w>" = {
-                action = "<cmd>bdelete<CR>";
-                desc = "Close buffer";
-              };
-              "<F2>" = {
-                action = "<cmd>lua vim.lsp.buf.rename()<CR>";
-                desc = "Rename symbol";
-              };
-              "<F12>" = {
-                action = "<cmd>lua vim.lsp.buf.definition()<CR>";
-                desc = "Go to definition";
-              };
-              "<S-F12>" = {
-                action = "<cmd>lua vim.lsp.buf.references()<CR>";
-                desc = "Find references";
-              };
-              "<M-Up>" = {
-                action = "<cmd>move .-2<CR>==";
-                desc = "Move line up";
-              };
-              "<M-Down>" = {
-                action = "<cmd>move .+1<CR>==";
-                desc = "Move line down";
-              };
-            };
-            visual = {
-              "<M-Up>" = {
-                action = ":move '<-2<CR>gv=gv";
-                desc = "Move selection up";
-              };
-              "<M-Down>" = {
-                action = ":move '>+1<CR>gv=gv";
-                desc = "Move selection down";
-              };
-            };
-          };
+          keymaps = [
+            {
+              key = "<C-Tab>";
+              mode = "n";
+              action = "<cmd>BufferLineCycleNext<CR>";
+              desc = "Next buffer";
+            }
+            {
+              key = "<C-S-Tab>";
+              mode = "n";
+              action = "<cmd>BufferLineCyclePrev<CR>";
+              desc = "Previous buffer";
+            }
+            {
+              key = "<C-w>";
+              mode = "n";
+              action = "<cmd>bdelete<CR>";
+              desc = "Close buffer";
+            }
+            {
+              key = "<F2>";
+              mode = "n";
+              action = "<cmd>lua vim.lsp.buf.rename()<CR>";
+              desc = "Rename symbol";
+            }
+            {
+              key = "<F12>";
+              mode = "n";
+              action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+              desc = "Go to definition";
+            }
+            {
+              key = "<S-F12>";
+              mode = "n";
+              action = "<cmd>lua vim.lsp.buf.references()<CR>";
+              desc = "Find references";
+            }
+            {
+              key = "<M-Up>";
+              mode = "n";
+              action = "<cmd>move .-2<CR>==";
+              desc = "Move line up";
+            }
+            {
+              key = "<M-Down>";
+              mode = "n";
+              action = "<cmd>move .+1<CR>==";
+              desc = "Move line down";
+            }
+            {
+              key = "<M-Up>";
+              mode = "v";
+              action = ":move '<-2<CR>gv=gv";
+              desc = "Move selection up";
+            }
+            {
+              key = "<M-Down>";
+              mode = "v";
+              action = ":move '>+1<CR>gv=gv";
+              desc = "Move selection down";
+            }
+          ];
         }
         {
           # file mentions
@@ -201,16 +233,20 @@
             })
           '';
 
-          maps.normal = {
-            "<C-b>" = {
+          keymaps = [
+            {
+              key = "<C-b>";
+              mode = "n";
               action = "<cmd>lua require('fyler').toggle({ kind = 'split_left_most' })<CR>";
               desc = "Toggle file explorer";
-            };
-            "<leader>e" = {
+            }
+            {
+              key = "<leader>e";
+              mode = "n";
               action = "<cmd>lua require('fyler').toggle({ kind = 'split_left_most' })<CR>";
               desc = "Toggle file explorer";
-            };
-          };
+            }
+          ];
         }
       ];
 
