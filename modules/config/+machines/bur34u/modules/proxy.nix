@@ -17,7 +17,7 @@
 
     provides.to-users = {
       zsh = {
-        initExtra = ''
+        initConfig = ''
           if [ -f /etc/proxy ]; then
             set -a; source /etc/proxy; set +a
           fi
