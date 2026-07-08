@@ -3,7 +3,9 @@
   den.aspects.tmux = {
     tmux = {
       history.limit = 50000;
+      tmux-resurrect.enable = true;
       tmux-continuum.enable = true;
+      tmux-continuum.boot.startCommand = "new-session -Ad -s default";
       status.enable = true;
       status.position = "bottom";
 
@@ -42,6 +44,10 @@
         bind -r n next-window
       '';
     };
+
+    user = {
+      linger = true;
+    };
   };
 
   den.schema.user.includes = [
@@ -74,6 +80,15 @@
         config = {
           files.".config/tmux/tmux.conf".source = "${tmuxConfig}/.tmux.conf";
           packages = [ pkgs.tmux ];
+          systemd.services.tmux-default-session = {
+            description = "Tmux default session";
+            wantedBy = [ "default.target" ];
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = "${lib.getExe pkgs.tmux} -f %h/.config/tmux/tmux.conf new-session -Ad -s default";
+              RemainAfterExit = true;
+            };
+          };
         };
       })
     {
