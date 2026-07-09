@@ -19,6 +19,7 @@
           "javascriptreact"
         ];
 
+
         # Language support
         languages = {
           typescript = {
@@ -48,6 +49,14 @@
           };
 
           java = {
+            enable = true;
+            lsp = {
+              enable = true;
+            };
+            treesitter.enable = true;
+          };
+
+          kotlin = {
             enable = true;
             lsp = {
               enable = true;
