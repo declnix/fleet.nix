@@ -76,34 +76,16 @@
           };
           keymaps = [
             {
-              key = "<C-p>";
-              mode = "n";
-              action = "<cmd>FzfLua files<CR>";
-              desc = "Find files";
-            }
-            {
               key = "<leader>ff";
               mode = "n";
               action = "<cmd>FzfLua files<CR>";
               desc = "Find files";
             }
             {
-              key = "<C-S-f>";
-              mode = "n";
-              action = "<cmd>FzfLua live_grep<CR>";
-              desc = "Search in files";
-            }
-            {
               key = "<leader>fg";
               mode = "n";
               action = "<cmd>FzfLua live_grep<CR>";
               desc = "Search in files";
-            }
-            {
-              key = "<C-S-p>";
-              mode = "n";
-              action = "<cmd>FzfLua commands<CR>";
-              desc = "Command palette";
             }
             {
               key = "<leader>fk";
@@ -141,12 +123,6 @@
               desc = "Previous buffer";
             }
             {
-              key = "<C-w>";
-              mode = "n";
-              action = "<cmd>bdelete<CR>";
-              desc = "Close buffer";
-            }
-            {
               key = "<F2>";
               mode = "n";
               action = "<cmd>lua vim.lsp.buf.rename()<CR>";
@@ -163,30 +139,6 @@
               mode = "n";
               action = "<cmd>lua vim.lsp.buf.references()<CR>";
               desc = "Find references";
-            }
-            {
-              key = "<M-Up>";
-              mode = "n";
-              action = "<cmd>move .-2<CR>==";
-              desc = "Move line up";
-            }
-            {
-              key = "<M-Down>";
-              mode = "n";
-              action = "<cmd>move .+1<CR>==";
-              desc = "Move line down";
-            }
-            {
-              key = "<M-Up>";
-              mode = "v";
-              action = ":move '<-2<CR>gv=gv";
-              desc = "Move selection up";
-            }
-            {
-              key = "<M-Down>";
-              mode = "v";
-              action = ":move '>+1<CR>gv=gv";
-              desc = "Move selection down";
             }
           ];
         }
