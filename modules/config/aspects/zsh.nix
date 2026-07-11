@@ -11,11 +11,7 @@
       omz.git.enable = true;
 
       initConfig = ''
-        if [[ -n $SSH_CLIENT ]]; then
-          PROMPT="%F{green}%n@%m%f %B%F{magenta}❯%f%b "
-        else
-          PROMPT="%B%F{magenta}❯%f%b "
-        fi
+        PROMPT="%B%F{magenta}#%f%b "
       '';
 
       history = {

@@ -9,7 +9,7 @@
       status.enable = true;
       status.position = "bottom";
       status.left = "#[fg=white,bold] #S";
-      status.right = "";
+      status.right = "#[fg=green] #(whoami)@#H";
 
       initExtra = ''
         set -g mouse on
