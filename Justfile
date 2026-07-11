@@ -1,51 +1,41 @@
 set shell := ["bash", "-c"]
 set quiet := true
 
-# Default host
 host := `hostname`
+hosts := "bur34u c4rg0x kr7va"
 
-# --- System Management ---
+[no-exit-message]
+_check_host host:
+    @case " {{hosts}} " in \
+      *" {{host}} "*) ;; \
+      *) echo '¯\_(ツ)_/¯  Choose a host from modules/config/+machines.'; exit 1 ;; \
+    esac
 
-# [switch] Apply configuration to the current system
+# [build] Build configuration for host
+[no-exit-message]
+build host=host:
+    @just _check_host "{{host}}" 2>/dev/null
+    nixos-rebuild build --flake ".#{{host}}" --show-trace --accept-flake-config
+
+# [switch] Apply configuration to host
+[no-exit-message]
 switch host=host:
+    @just _check_host "{{host}}" 2>/dev/null
     sudo nixos-rebuild switch --flake ".#{{host}}" --show-trace --accept-flake-config
 
-# [boot] Schedule configuration change for next reboot
+# [boot] Schedule configuration for next boot
+[no-exit-message]
 boot host=host:
+    @just _check_host "{{host}}" 2>/dev/null
     sudo nixos-rebuild boot --flake ".#{{host}}" --accept-flake-config
 
-# [vm] Build and test configuration in a local VM
-vm host=host:
-    nixos-rebuild build-vm --flake ".#{{host}}" --accept-flake-config
-    ./result/bin/run-{{host}}-vm
-
-# --- Flake & Development ---
-
-# [update] Update all flake inputs or a specific one
-update input="":
-    #!/usr/bin/env bash
-    if [ -z "{{input}}" ]; then
-        nix flake update
-    else
-        nix flake update "{{input}}"
-    fi
-
-# [fmt] Format all code in the repository
-fmt:
+# [format] Format repository
+format:
     nix fmt
 
-# [check] Verify configuration integrity
+# [check] Verify flake
 check:
     nix flake check --show-trace --accept-flake-config
 
-# --- Maintenance ---
-
-# [cleanup] Deep system garbage collection and optimization
-cleanup:
-    sudo nix-collect-garbage -d
-    sudo nix-store --optimise
-    nix-store --gc
-
-# --- Help ---
 default:
     @just --list

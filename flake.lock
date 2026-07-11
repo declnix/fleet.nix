@@ -93,6 +93,22 @@
         "type": "github"
       }
     },
+    "files": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780525181,
+        "narHash": "sha256-a7a7123pVQpWOVfZnffX+KFGIx8rTHC6pbNwk0ZYe1k=",
+        "owner": "mightyiam",
+        "repo": "files",
+        "rev": "72c3663bf84fcffbccc682949041189c1e5e5197",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mightyiam",
+        "repo": "files",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -916,6 +932,7 @@
       "inputs": {
         "antigravity": "antigravity",
         "den": "den",
+        "files": "files",
         "flake-file": "flake-file",
         "flake-parts": "flake-parts",
         "git-hooks-nix": "git-hooks-nix",
