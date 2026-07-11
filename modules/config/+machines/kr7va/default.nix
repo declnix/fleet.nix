@@ -24,9 +24,6 @@
 
         packages = with pkgs;
           [
-            claude-code
-            codex
-            gemini-cli
             wget
             curl
             firefox
@@ -52,7 +49,6 @@
           den.aspects.development
           den.batteries.primary-user
           (den.batteries.user-shell "zsh")
-          (den.batteries.unfree [ "claude-code" ])
         ];
     };
 
