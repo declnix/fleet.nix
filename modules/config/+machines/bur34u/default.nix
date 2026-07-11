@@ -3,6 +3,11 @@
 }:
 {
   den.aspects.bur34u = {
+    nixos = {
+      # Reserve ports for local development services.
+      boot.kernel.sysctl."net.ipv4.ip_local_reserved_ports" = "61000-64999";
+    };
+
     provides.nixos-user = { user, ... }: {
       nvim = {
         # LSP server presets
