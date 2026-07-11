@@ -202,7 +202,7 @@
         }
       ];
 
-    nixos = {
+    hjem = {
       environment.sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";
@@ -210,7 +210,7 @@
       };
     };
 
-    hjem = {
+    nixos = {
       environment.sessionVariables = {
         EDITOR = "nvim";
         VISUAL = "nvim";

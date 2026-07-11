@@ -15,6 +15,10 @@
   };
 
   inputs = {
+    antigravity = {
+      url = "github:Hy4ri/antigravity-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     den.url = "github:denful/den";
     flake-file.url = "github:denful/flake-file";
     flake-parts = {

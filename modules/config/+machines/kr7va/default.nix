@@ -3,21 +3,6 @@
 }:
 {
   den.aspects.kr7va = {
-    nixos =
-      { ... }:
-      {
-        networking.networkmanager.enable = true;
-        services.upower.enable = true;
-        services.power-profiles-daemon.enable = true;
-
-        time.timeZone = "Europe/Warsaw";
-
-        services.logind.settings.Login = {
-          HandleLidSwitch = "suspend";
-          HandleLidSwitchExternalPower = "ignore";
-        };
-      };
-
     provides.declnix = {
       hjem = { pkgs, ... }: {
         rum.programs.fuzzel.enable = true;
@@ -51,6 +36,21 @@
           (den.batteries.user-shell "zsh")
         ];
     };
+
+    nixos =
+      { ... }:
+      {
+        networking.networkmanager.enable = true;
+        services.upower.enable = true;
+        services.power-profiles-daemon.enable = true;
+
+        time.timeZone = "Europe/Warsaw";
+
+        services.logind.settings.Login = {
+          HandleLidSwitch = "suspend";
+          HandleLidSwitchExternalPower = "ignore";
+        };
+      };
 
     includes =
       (with den.aspects; [ tailscale ssh podman fonts ])

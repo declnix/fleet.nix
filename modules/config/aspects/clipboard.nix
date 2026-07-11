@@ -1,6 +1,34 @@
 { den, lib, ... }:
 {
   den.aspects.clipboard = {
+    nvim = {
+      luaConfigPost = ''
+        vim.g.clipboard = {
+          name = 'pbcopy/pbpaste',
+          copy = {
+            ['+'] = { 'pbcopy' },
+            ['*'] = { 'pbcopy' },
+          },
+          paste = {
+            ['+'] = { 'pbpaste' },
+            ['*'] = { 'pbpaste' },
+          },
+          cache_enabled = 0,
+        }
+        vim.opt.clipboard = 'unnamedplus'
+      '';
+    };
+
+    tmux = {
+      initExtra = lib.mkAfter ''
+        set -g set-clipboard on
+        bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+        bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
+        bind-key -T copy-mode Enter send-keys -X copy-pipe-and-cancel "pbcopy"
+        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+      '';
+    };
+
     nixos =
       { config, pkgs, ... }:
       let
@@ -84,34 +112,6 @@
           pkgs.wl-clipboard
         ];
       };
-
-    nvim = {
-      luaConfigPost = ''
-        vim.g.clipboard = {
-          name = 'pbcopy/pbpaste',
-          copy = {
-            ['+'] = { 'pbcopy' },
-            ['*'] = { 'pbcopy' },
-          },
-          paste = {
-            ['+'] = { 'pbpaste' },
-            ['*'] = { 'pbpaste' },
-          },
-          cache_enabled = 0,
-        }
-        vim.opt.clipboard = 'unnamedplus'
-      '';
-    };
-
-    tmux = {
-      initExtra = lib.mkAfter ''
-        set -g set-clipboard on
-        bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
-        bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
-        bind-key -T copy-mode Enter send-keys -X copy-pipe-and-cancel "pbcopy"
-        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
-      '';
-    };
   };
 
   den.policies.clipboard-user =

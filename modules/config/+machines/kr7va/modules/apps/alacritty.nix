@@ -1,14 +1,16 @@
 { ... }:
 {
-  den.aspects.kr7va.provides.declnix.hjem = {
-    rum.programs.alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          decorations = "None";
-          padding = {
-            x = 10;
-            y = 10;
+  den.aspects.kr7va = {
+    provides.declnix.hjem = {
+      rum.programs.alacritty = {
+        enable = true;
+        settings = {
+          window = {
+            decorations = "None";
+            padding = {
+              x = 10;
+              y = 10;
+            };
           };
         };
       };
