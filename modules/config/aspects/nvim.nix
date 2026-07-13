@@ -65,6 +65,14 @@
               type = [ "mdformat" ];
             };
           };
+          session.nvim-session-manager = {
+            enable = true;
+            setupOpts = {
+              autoload_mode = "CurrentDir";
+              autosave_last_session = true;
+              autosave_only_in_session = false;
+            };
+          };
         }
         {
           # fzf-lua
