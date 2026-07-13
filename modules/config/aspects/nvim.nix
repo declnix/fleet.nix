@@ -59,6 +59,10 @@
           languages.markdown = {
             enable = true;
             extensions.render-markdown-nvim.enable = true;
+            format = {
+              enable = true;
+              type = [ "mdformat" ];
+            };
           };
         }
         {
