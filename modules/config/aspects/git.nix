@@ -1,3 +1,4 @@
+{ den, ... }:
 {
   den.aspects.git = {
     hjem = { ... }: {
@@ -5,5 +6,7 @@
         enable = true;
       };
     };
+
+    includes = [ den.aspects.gh ];
   };
 }
