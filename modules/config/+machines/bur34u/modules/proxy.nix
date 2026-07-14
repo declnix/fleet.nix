@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ den, lib, ... }: {
   den.aspects.bur34u = {
     nixos =
       { ... }:
@@ -34,5 +34,8 @@
         '';
       };
     };
+
+
+    includes = with den.aspects; [ zscaler ];
   };
 }

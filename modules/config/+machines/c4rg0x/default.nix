@@ -6,11 +6,11 @@
         users.users.${user.userName}.initialPassword = "test";
       };
 
-      includes = [
-        den.batteries.primary-user
-        (den.batteries.user-shell "zsh")
-      ]
-      ++ [ den.aspects.development ];
+      includes = (with den.batteries; [
+        primary-user
+        (user-shell "zsh")
+      ])
+      ++ (with den.aspects; [ development zscaler ]);
     };
 
   };
