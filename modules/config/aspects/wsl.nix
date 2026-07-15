@@ -4,13 +4,15 @@
 }:
 {
   den.aspects.wsl = {
-    wsl = {
-      interop.register = true;
+    provides.to-users = {
+      hjem = {
+        rum.programs.git.settings.credential.helper =
+          "/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe";
+      };
     };
 
-    hjem = {
-      rum.programs.git.settings.credential.helper =
-        "/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe";
+    wsl = {
+      interop.register = true;
     };
 
     nixos = {
