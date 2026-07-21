@@ -21,7 +21,7 @@ build host=host:
 [no-exit-message]
 switch host=host:
     @just _check_host "{{host}}" 2>/dev/null
-    @if [ -f "modules/config/+machines/{{host}}/Makefile" ]; then make -s -C "modules/config/+machines/{{host}}"; fi
+    @if [ -f "modules/config/+machines/{{host}}/Makefile" ]; then make -C "modules/config/+machines/{{host}}"; fi
     sudo nixos-rebuild switch --flake ".#{{host}}" --show-trace --accept-flake-config
 
 # [boot] Schedule configuration for next boot

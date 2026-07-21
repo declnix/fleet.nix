@@ -1,12 +1,13 @@
 {
   den.aspects.fzf = {
-    hjem =
-      { ... }:
-      {
-        rum.programs.fzf = {
-          enable = true;
-          integrations.zsh.enable = true;
-        };
-      };
+    zsh = { lib, pkgs, ... }: {
+      initConfig = ''
+        source <(${lib.getExe pkgs.fzf} --zsh)
+      '';
+    };
+
+    hjem = { pkgs, ... }: {
+      packages = [ pkgs.fzf ];
+    };
   };
 }

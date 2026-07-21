@@ -51,3 +51,7 @@ den.aspects.kr7va = {
 ### 4. Inline Plugin Package Definitions
 
 For plugin-oriented aspects such as `zsh` and `tmux`, keep package fetches/builds inline with the plugin declaration that uses them. Do not hoist plugin packages into a shared outer `let` unless the same derivation is intentionally reused by multiple plugin entries or non-plugin settings.
+
+### 5. Simple Console Tool Aspects
+
+For simple console tool aspects that only install a package and add shell aliases or hooks, prefer direct `hjem.packages` plus `zsh.initConfig`. Do not create a custom `rum.programs.<tool>` module or `den.default.nixos.hjem.extraModules` block unless the tool needs reusable options, conditional behavior, or non-trivial integration logic.

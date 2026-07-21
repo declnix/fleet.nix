@@ -1,12 +1,13 @@
 {
   den.aspects.direnv = {
-    hjem =
-      { ... }:
-      {
-        rum.programs.direnv = {
-          enable = true;
-          integrations.zsh.enable = true;
-        };
-      };
+    zsh = { lib, pkgs, ... }: {
+      initConfig = ''
+        eval "$(${lib.getExe pkgs.direnv} hook zsh)"
+      '';
+    };
+
+    hjem = { pkgs, ... }: {
+      packages = [ pkgs.direnv ];
+    };
   };
 }

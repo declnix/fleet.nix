@@ -1,10 +1,13 @@
 {
   den.aspects.zoxide = {
-    hjem = { ... }: {
-      rum.programs.zoxide = {
-        enable = true;
-        integrations.zsh.enable = true;
-      };
+    zsh = { lib, pkgs, ... }: {
+      initConfig = ''
+        eval "$(${lib.getExe pkgs.zoxide} init zsh)"
+      '';
+    };
+
+    hjem = { pkgs, ... }: {
+      packages = [ pkgs.zoxide ];
     };
   };
 }
