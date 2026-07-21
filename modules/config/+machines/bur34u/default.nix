@@ -66,10 +66,19 @@
         };
       };
 
-      zsh = {
-        omz = {
-          mvn.enable = true;
-          npm.enable = true;
+      zsh = { pkgs, ... }: {
+        plugins = {
+          omz-mvn = {
+            load = "idle";
+            package = pkgs.oh-my-zsh;
+            source = "share/oh-my-zsh/plugins/mvn/mvn.plugin.zsh";
+          };
+
+          omz-npm = {
+            load = "idle";
+            package = pkgs.oh-my-zsh;
+            source = "share/oh-my-zsh/plugins/npm/npm.plugin.zsh";
+          };
         };
       };
 

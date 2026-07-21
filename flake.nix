@@ -19,6 +19,7 @@
       url = "github:Hy4ri/antigravity-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dag.url = "github:denful/dag";
     den.url = "github:denful/den";
     files = {
       url = "github:mightyiam/files";
@@ -71,6 +72,9 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zsh-nix.url = "github:declnix/zsh.nix";
+    zsh-patina = {
+      url = "github:michel-kraemer/zsh-patina";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
