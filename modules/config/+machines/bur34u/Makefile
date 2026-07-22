@@ -17,7 +17,13 @@ all: $(files)
 	ALL_PROXY="$${ALL_PROXY:-$${all_proxy:-}}" \
 	NO_PROXY="$${NO_PROXY:-$${no_proxy:-}}" \
 	envsubst < "$<" > "$$tmp"; \
-	sudo install -D -m 0644 "$$tmp" "$@"
+	if [ -e "$@" ] && cmp -s "$$tmp" "$@"; then \
+		printf '  \033[0;90m󰖟  up-to-date\033[0m %s\n' "$@"; \
+	else \
+		if [ -e "$@" ]; then action=updated; else action=generated; fi; \
+		printf '  \033[0;36m󰖟  %s\033[0m %s\n' "$$action" "$@"; \
+		sudo install -D -m 0644 "$$tmp" "$@"; \
+	fi
 
 /etc/gitconfig.d/proxy.conf: modules/proxy/gitconfig.conf.in
 	@tmp="$$(mktemp)"; \
@@ -25,7 +31,16 @@ all: $(files)
 	git_proxy="$${https_proxy:-$${HTTPS_PROXY:-$${http_proxy:-$${HTTP_PROXY:-}}}}"; \
 	if [ -n "$$git_proxy" ]; then \
 		git_proxy="$$git_proxy" envsubst < "$<" > "$$tmp"; \
+		action=updated; \
 	else \
 		: > "$$tmp"; \
+		action=clear; \
 	fi; \
-	sudo install -D -m 0644 "$$tmp" "$@"
+	if [ -e "$@" ] && cmp -s "$$tmp" "$@"; then \
+		printf '  \033[0;90m󰊢  up-to-date\033[0m %s\n' "$@"; \
+	else \
+		if [ "$$action" = updated ] && [ ! -e "$@" ]; then action=generated; fi; \
+		if [ "$$action" = clear ]; then color=33; else color=36; fi; \
+		printf '  \033[0;%sm󰊢  %s\033[0m %s\n' "$$color" "$$action" "$@"; \
+		sudo install -D -m 0644 "$$tmp" "$@"; \
+	fi
