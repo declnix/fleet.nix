@@ -18,7 +18,7 @@ build host=host:
 [no-exit-message]
 switch host=host:
     @just _check_host "{{host}}" 2>/dev/null
-    @if [ -f "{{machines_dir}}/{{host}}/Makefile" ]; then printf '\033[1;36m󰙨  make  \033[0;36m%s\033[0m\n\033[0;36m------------------------\033[0m\n' "{{host}}"; make -s -C "{{machines_dir}}/{{host}}"; fi
+    @if [ -f "{{machines_dir}}/{{host}}/Makefile" ]; then printf '\033[1;36m󰙨  make  \033[0;36m%s\033[0m\n\033[0;36m------------------------\033[0m\n' "{{host}}"; make -s -C "{{machines_dir}}/{{host}}" all; fi
     @printf '\n\033[1;32m󱄅  switch  \033[0;32m%s\033[0m\n\033[0;32m------------------------\033[0m\n' "{{host}}"
     nixos-rebuild switch --flake ".#{{host}}" --elevate=sudo  -L --show-trace --accept-flake-config
     @printf '\n'

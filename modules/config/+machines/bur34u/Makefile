@@ -2,8 +2,20 @@ files := \
 	/etc/environment.d/90-proxy.conf \
 	/etc/gitconfig.d/proxy.conf
 
-.PHONY: all $(files)
-all: $(files)
+.PHONY: all glab $(files)
+all: glab $(files) 
+
+glab:
+	@host="$${GITLAB_HOST}"; \
+	host="$${host#https://}"; \
+	host="$${host#http://}"; \
+	current="$$(glab config get host --global 2>/dev/null || true)"; \
+	if [ "$$current" = "$$host" ]; then \
+		printf '  \033[0;90m  up-to-date\033[0m %s\n' "glab host: $$host"; \
+	else \
+		glab config set host "$$host" --global; \
+		printf '  \033[0;36m  updated\033[0m %s\n' "glab host: $$host"; \
+	fi
 
 /etc/environment.d/90-proxy.conf: modules/proxy/90-proxy.conf.in
 	@tmp="$$(mktemp)"; \
@@ -18,10 +30,10 @@ all: $(files)
 	NO_PROXY="$${NO_PROXY:-$${no_proxy:-}}" \
 	envsubst < "$<" > "$$tmp"; \
 	if [ -e "$@" ] && cmp -s "$$tmp" "$@"; then \
-		printf '  \033[0;90m󰖟  up-to-date\033[0m %s\n' "$@"; \
+		printf '  \033[0;90m  up-to-date\033[0m %s\n' "$@"; \
 	else \
 		if [ -e "$@" ]; then action=updated; else action=generated; fi; \
-		printf '  \033[0;36m󰖟  %s\033[0m %s\n' "$$action" "$@"; \
+		printf '  \033[0;36m  %s\033[0m %s\n' "$$action" "$@"; \
 		sudo install -D -m 0644 "$$tmp" "$@"; \
 	fi
 
@@ -37,10 +49,12 @@ all: $(files)
 		action=clear; \
 	fi; \
 	if [ -e "$@" ] && cmp -s "$$tmp" "$@"; then \
-		printf '  \033[0;90m󰊢  up-to-date\033[0m %s\n' "$@"; \
+		printf '  \033[0;90m  up-to-date\033[0m %s\n' "$@"; \
 	else \
 		if [ "$$action" = updated ] && [ ! -e "$@" ]; then action=generated; fi; \
 		if [ "$$action" = clear ]; then color=33; else color=36; fi; \
-		printf '  \033[0;%sm󰊢  %s\033[0m %s\n' "$$color" "$$action" "$@"; \
+		printf '  \033[0;%sm  %s\033[0m %s\n' "$$color" "$$action" "$@"; \
 		sudo install -D -m 0644 "$$tmp" "$@"; \
 	fi
+
+
